@@ -19,6 +19,7 @@ $.fn.S3Uploader = (options) ->
     additional_data: null
     before_add: null
     before_add_async: null
+    after_add: null
     remove_completed_progress_bar: true
     remove_failed_progress_bar: false
     progress_bar_target: null
@@ -55,6 +56,8 @@ $.fn.S3Uploader = (options) ->
               forms_for_submit = [data]
           else
             data.submit()
+          if settings.after_add
+            settings.after_add()
 
         if settings.before_add_async
           settings.before_add_async(file).then (result) ->
